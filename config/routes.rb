@@ -7,7 +7,7 @@ Rails.application.routes.draw do
             resource :favorites, only: [:create, :destroy]
             resource :post_comments, only: [:create, :destroy]
             end
-  # usersコントローラにはshowアクションしか定義していないのでonlyを使って不必要なルーティングが生成されるのを制限しています
-  resources :users, only: [:show]
+  # usersコントローラにはshow、edit、updateアクションしか定義していないのでonlyを使って不必要なルーティングが生成されるのを制限しています
+  resources :users, only: [:show, :edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

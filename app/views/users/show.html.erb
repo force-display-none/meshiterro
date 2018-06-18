@@ -1,6 +1,22 @@
 <div class="profile-container">
     <h3 class="profile-name"><%= @user.name %></h3>
-    <%= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height: 100px; margin-top: 20px;") %>
+    <!-- 以前に画像投稿機能を実装した際にも出てきたrefileが用意しているヘルパー(attachment_image_tag)を使用して画像を表示しています -->
+    <!-- attachment_image_tagのすぐ右の@userの部分には、画像を格納しているカラムを持つインスタンスを入れます。 今回は、Userが画像を保持しているカラムを持っているので@userを入れます。
+
+次に、:profile_imageの部分では画像が格納されているカラムを指定しています。 【注意】実際のカラムはprofile_image_idですがrefileの仕様により、_idを外した状態でカラム指定しましょう
+
+:fillでは、縦横の大きさを指定しています。単位はpxです。
+
+format:は画像の拡張子の指定です。
+
+class:は今までも何度か出てきましたが、htmlのclassをrailsのタグ用に記述しています。
+
+fallback:は画像データがカラムにない場合に表示される画像を指定しています。 (今回は、app/assets/imagesにあらかじめ用意している画像を指定しています。) -->
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+    <!-- 編集ページへのリンクを設置しています -->
+    <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
 </div>
 <section class="sct-color-1 slice">
   <div class="container-fluid masonry-container">
