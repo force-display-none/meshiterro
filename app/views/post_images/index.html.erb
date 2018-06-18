@@ -20,10 +20,10 @@
                 <div class="block-content">
                   <%= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb") %>
                   <h3 class="block-title">
-         <%= link_to post_image_path(post_image.id) do %>
+                   <%= link_to post_image_path(post_image.id) do %>
                      <i class="fa fa-map-marker"></i><%= post_image.shop_name %>
                                                      <!-- post_imageモデルに定義されているshop_nameカラムを表示します -->
-         <% end %>
+                   <% end %>
                   </h3>
                   <p><%= post_image.caption %></p>
                      <!-- post_imageモデルに定義されているcaptionカラムを表示します -->
