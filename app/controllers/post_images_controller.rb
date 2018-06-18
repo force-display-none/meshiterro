@@ -27,6 +27,14 @@ class PostImagesController < ApplicationController
       @post_comment = PostComment.new
   end
 
+  def destroy
+      # @post_image = PostImage.find(params[:id])の部分では先に作成したresourcesルーティングのdestroyで渡ってきたパラメータ(params[:id])を元に削除するデータをfindメソッドを使って探して@post_imageインスタンスにしまいます
+      @post_image = PostImage.find(params[:id])
+      # @post_image.destroyでは、@post_imageインスタンスにしまったデータをdestroyメソッドで削除します。削除後は一覧ページのindexページへ遷移するためにedirect_toを記述しています。
+      @post_image.destroy
+      redirect_to post_images_path
+  end
+
   # 投稿画像についてのハッシュチェック、ストロングパラメータの定義
   # post_image_paramsでは、投稿画像として送信されたデータが許可されているパラメータかどうかのチェックを行います
 private
